@@ -5,17 +5,17 @@ import java.util.Set;
 
 public class State {
 	private String symbol;
-	private Set<TransitionFuction> transitions;
+	private Set<TransitionFunction> transitions;
 	
 	public State(String symbol){
 		this.symbol = symbol;
-		this.transitions = new HashSet<TransitionFuction>();
+		this.transitions = new HashSet<TransitionFunction>();
 	}
 
 	
-	public TransitionFuction getTransition(String tapeSymbol){
-		TransitionFuction result = null;
-		for (TransitionFuction transition : transitions) {
+	public TransitionFunction getTransition(String tapeSymbol){
+		TransitionFunction result = null;
+		for (TransitionFunction transition : transitions) {
 			if(transition.getCurrentSymbol().equals(tapeSymbol)){
 				result = transition;
 			}
@@ -24,7 +24,7 @@ public class State {
 	}
 	
 	
-	public void addTransition(TransitionFuction transition){
+	public void addTransition(TransitionFunction transition){
 		transitions.add(transition);
 	}
 	
