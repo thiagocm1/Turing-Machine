@@ -1,5 +1,6 @@
 package machine;
 
+
 public class TransitionFunction {
 	
 	private State nextState;
@@ -51,4 +52,5 @@ public class TransitionFunction {
 	
 	
 	
+
 }
