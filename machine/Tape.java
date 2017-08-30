@@ -28,7 +28,7 @@ public class Tape {
 	}
 	// mudar o r e o 1
 	public void walk(String walk){
-		if(walk.equals("1")){
+		if(walk.equals("l")){
 				this.walkLeft();
 		}if(walk.equals("r")){
 			this.walkRight();	
@@ -57,7 +57,7 @@ public class Tape {
 			return words.get(head);
 	}
 	private void walkRight() {
-		if(head == this.words.size() -1){
+		if(head == this.words.size() - 1){
 			this.words.add("_");
 		}
 		head++;

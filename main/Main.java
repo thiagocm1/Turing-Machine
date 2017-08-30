@@ -42,7 +42,44 @@ public class Main {
 		printAll();
 	}
 	
+	
 	public static void run(String option) throws IOException {
+		switch(option){
+		case "1":
+			try {
+				turingMachine.runFullSpeed();
+				printAll();
+			} catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+			break;
+		case "2":
+			try {
+				turingMachine.stepByStep();
+				printAll();
+			} catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+			break;
+		case "3":
+			System.out.println("");
+			System.out.print("Please, type new word: ");
+			String word = input.nextLine();
+			turingMachine.writeOnTape(word);
+			printAll();
+			break;
+		case "4":
+			turingMachine.restartMachine();
+			turingMachine.readFromConsole();
+			System.out.println("");
+			System.out.print("Please, type new syntax: ");
+			String word1 = input.nextLine();
+			turingMachine.writeOnTape(word1);
+			printAll();
+			break;
+			
+		}
+		/*
 		if (option.equals("1")) {
 			try {
 				turingMachine.runFullSpeed();
@@ -72,7 +109,7 @@ public class Main {
 			turingMachine.writeOnTape(word);
 			printAll();
 		}
-		
+		*/
 	}
 	
 	public static void printAll() {

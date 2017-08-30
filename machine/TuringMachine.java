@@ -33,7 +33,7 @@ public class TuringMachine {
 				State newState = new State(state);
 				states.add(newState);
 				
-				String[] words = state.split(" ");
+				String[] words = state.split("");
 				if(words.length >= 4){
 					String halt = words[0] + words[1] + words[2] + words[3];
 					if(halt.equals("halt")){ // AQUI O PROGRAMA PARAAAA eu acho
@@ -76,19 +76,22 @@ public class TuringMachine {
 		
 		
 		public void runFullSpeed() throws Exception {
-			for (State state : states) {
+		
+			while(!this.finalStates.contains(this.currentState)){
 				this.stepByStep();
-				
 			}
+			
 		}
 
 		public void stepByStep() throws Exception {
-			if(finalStates.contains(this.currentState)){return;}
+			if(finalStates.contains(this.currentState)){
+				return;
+			}
 			TransitionFunction transition = this.currentState.getTransition(this.tape.getSymbol());
 			if(transition == null){
-				transition = this.currentState.getTransition("*"); 
+				transition = this.currentState.getTransition("*");
 				if(transition == null){
-					throw new Exception("I'm sorry Dave, i'm afraid i can't do that. "); // mudar isso dps
+					throw new Exception("I'm sorry Dave. I'm afraid i can't do that. Please, change your words ' 3 ' or syntax ' 4 ' ");
 				}
 			}
 			if(!transition.getNextSymbol().equals("*")){
@@ -98,7 +101,7 @@ public class TuringMachine {
 			if(!transition.getNextState().equals("*")){
 				this.currentState = transition.getNextState();
 			}
-			this.steps ++;
+			this.steps++;
 		}
 
 		
