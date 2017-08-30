@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.omg.CORBA.INITIALIZE;
-
-import files.File;
 import machine.TuringMachine;
+
 public class Main {
-	
+
 	private static TuringMachine turingMachine = new TuringMachine();
 	private static Scanner input = new Scanner(System.in);
 	

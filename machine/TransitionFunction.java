@@ -1,6 +1,5 @@
 package machine;
 
-
 public class TransitionFunction {
 	
 	private String currentSymbol;
@@ -46,5 +45,9 @@ public class TransitionFunction {
 	public void setNextState(State nextState) {
 		this.nextState = nextState;
 	}
+	
+	
+	
+	
 	
 }

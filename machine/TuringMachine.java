@@ -1,15 +1,10 @@
 package machine;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
-
-import files.File;
-
 
 
 public class TuringMachine {
@@ -39,7 +34,7 @@ public class TuringMachine {
 				String[] words = state.split("");
 				if(words.length >= 4){
 					String halt = words[0] + words[1] + words[2] + words[3];
-					if(halt.equals("halt")){ 
+					if(halt.equals("halt")){
 						finalStates.add(newState);
 					}
 				}
@@ -77,9 +72,8 @@ public class TuringMachine {
 		}
 		
 		
-		
-		public void runFullSpeed() throws Exception {
-		
+		public void runFullSpeed() throws Exception	 {
+			
 			while(!this.finalStates.contains(this.currentState)){
 				this.stepByStep();
 			}
@@ -90,12 +84,17 @@ public class TuringMachine {
 			if(finalStates.contains(this.currentState)){
 				return;
 			}
+			
 			TransitionFunction transition = this.currentState.getTransition(this.tape.getSymbol());
+			
 			if(transition == null){
+			
 				transition = this.currentState.getTransition("*");
-				if(transition == null){
-					throw new Exception("I'm sorry Dave. I'm afraid i can't do that. Please, change your words ' 3 ' or syntax ' 4 ' ");
-				}
+					
+					if(transition == null){
+						throw new Exception("I'm sorry Kyller. I'm afraid i can't do that. Please, change your words ( 3 ) or syntax ( 4 ) : ");
+					}
+				
 			}
 			if(!transition.getNextSymbol().equals("*")){
 				tape.writeSymbol(transition.getNextSymbol());
@@ -107,56 +106,32 @@ public class TuringMachine {
 			this.steps++;
 		}
 
-		
 
-		public void restartMachine() {
-			this.states = new HashSet<State>();
-			this.initialState = new State("0");
-			this.currentState = this.initialState;
-			this.finalStates = new HashSet<State>();
-			this.steps = 0;
-			this.tape = new Tape();
-			this.states.add(initialState);
-		}
-		
-		public void readFromConsole() throws IOException{
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println("\nType an syntax follow by 'end': ");
-			String in;
+	public void restartMachine() {
+		this.states = new HashSet<State>();
+		this.initialState = new State("0");
+		this.currentState = this.initialState;
+		this.finalStates = new HashSet<State>();
+		this.steps = 0;
+		this.tape = new Tape();
+		this.states.add(initialState);
+	}
 
-			while (!(in = reader.readLine()).trim().equalsIgnoreCase("end")) {
-				if (!in.isEmpty() && !in.trim().equals("")) {
-					String[] read = in.split(" ");
-					if (!read[0].equals(";")) {
-						addTransition(read[0], read[1], read[2], read[3], read[4]);
-					}
+	public void readFromConsole() throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("\nType an syntax follow by ' end ': ");
+		String in;
+
+		while (!(in = reader.readLine()).trim().equalsIgnoreCase("end")) {
+			if (!in.isEmpty() && !in.trim().equals("")) {
+				String[] read = in.split(" ");
+				if (!read[0].equals(";")) {
+					addTransition(read[0], read[1], read[2], read[3], read[4]);
 				}
 
 			}
-			
-		
 		}
-		public void readFile() throws IOException {
-			BufferedReader br = new BufferedReader(new FileReader("syntax.txt"));
-			String line;	
+	}
 
-			while ((line = br.readLine()) != null) {
-				if (!line.isEmpty()) {
-					String[] read = line.split(" ");
-					if (!read[0].equals(";")) {
-						addTransition(read[0], read[1], read[2], read[3], read[4]);
-					}
-				}
 
-			}
-			br.close();
-		}
-		
-		protected void scan() {
-			Scanner scan = new Scanner(System.in);
-			writeOnTape(scan.nextLine());
-			scan.close();
-		}
-
-	
 }

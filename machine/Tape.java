@@ -2,7 +2,6 @@ package machine;
 
 import java.util.ArrayList;
 
-
 public class Tape {
 	public ArrayList<String> words;
 	public int head;
