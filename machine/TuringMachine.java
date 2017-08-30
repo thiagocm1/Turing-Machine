@@ -1,7 +1,14 @@
 package machine;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
+
+import files.File;
+
 
 public class TuringMachine {
 	public Set<State> states;
@@ -10,7 +17,7 @@ public class TuringMachine {
 	public State initialState;
 	public State currentState;
 	public Set<State> finalStates;
-	
+
 	public TuringMachine(){
 		this.states = new HashSet<State>();
 		this.initialState = new State("0");
@@ -22,7 +29,7 @@ public class TuringMachine {
 	}
 	
 	private void createState(String state){
-		if(this.findState(state).equals(null)){
+		if(this.findState(state)==null){
 			State newState = new State(state);
 			states.add(newState);
 			
@@ -63,7 +70,9 @@ public class TuringMachine {
 		this.currentState = this.initialState;
 		this.tape = new Tape();
 		this.tape.writeWord(word);
+		
 	}
+	
 	
 	
 	public void runFullSpeed() throws Exception {
@@ -103,9 +112,38 @@ public class TuringMachine {
 		this.tape = new Tape();
 		this.states.add(initialState);
 	}
+	public void readFromConsole() throws IOException{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("\nDigite a sintaxe desejada seguida de 'end' para continuar: ");
+		String in;
 
-	public void readFromConsole() {
-		// TODO Auto-generated method stub
+		while (!(in = reader.readLine()).trim().equalsIgnoreCase("end")) {
+			if (!in.isEmpty() && !in.trim().equals("")) {
+				String[] read = in.split(" ");
+				if (!read[0].equals(";")) {
+					addTransition(read[0], read[1], read[2], read[3], read[4]);
+				}
+			}
+
+		}
 		
+	
 	}
+	public void readFile() throws IOException {
+		FileReader in = new FileReader("C:\\Users\\Rebeca\\Desktop\\syntax.txt");
+		BufferedReader br = new BufferedReader(in);
+		String line;
+
+		while ((line = br.readLine()) != null) {
+			if (!line.isEmpty()) {
+				String[] read = line.split(" ");
+				if (!read[0].equals(";")) {
+					addTransition(read[0], read[1], read[2], read[3], read[4]);
+				}
+			}
+
+		}
+		br.close();
+	}
+
 }
