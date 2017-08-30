@@ -3,14 +3,13 @@ package machine;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class TuringMachine {
-	private Set<State> states;
-	private int steps;
-	private Tape tape;
-	private State initialState;
-	private State currentState;
-	private Set<State> finalStates;
+	public Set<State> states;
+	public int steps;
+	public Tape tape;
+	public State initialState;
+	public State currentState;
+	public Set<State> finalStates;
 	
 	public TuringMachine(){
 		this.states = new HashSet<State>();
@@ -93,24 +92,15 @@ public class TuringMachine {
 		this.steps ++;
 	}
 
-	public void changeWord(String word) {
+	
+
+	public void restartMachine() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void end() {
+	public void readFromConsole() {
 		// TODO Auto-generated method stub
 		
 	}
-
-	public String steps() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String currentState() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
