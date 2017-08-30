@@ -1,7 +1,7 @@
 package files;
 
+
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
@@ -34,15 +34,25 @@ public class FileReader {
 		machine.reset();
 	}
 	
-	private void scan(){
+	protected void scan() {
 		Scanner scan = new Scanner(System.in);
 		machine.writeOnTape(scan.nextLine());
 		scan.close();
 	}
-	
-	public void readFile(){
-		BufferedReader in = new BufferedReader(	new FileReader("syntax.txt"));
+
+	public void readFile() throws IOException {
+		BufferedReader file = new BufferedReader(new java.io.FileReader("syntax.txt"));
+		String line;
 		
+		while((line = file.readLine()) != null){
+			if(!line.matches("^;.*") && !line.isEmpty()){
+				String[] readFile = line.split(" ");
+				if(!readFile[0].equals(";")){
+					machine.addTransition(readFile[0], readFile[1], readFile[2], readFile[3], readFile[4]);
+				}
+			}
+		}
+		file.close();
 		
 	}
 	/*
