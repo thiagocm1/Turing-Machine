@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 import org.omg.CORBA.INITIALIZE;
 
-import files.FileReader;
+import files.File;
 import machine.TuringMachine;
 
 public class Main {
 	
-	private static FileReader files = new FileReader();
+	private static File files = new File();
 	private static TuringMachine machine = new TuringMachine();
 	private static Scanner input = new Scanner(System.in);
 
@@ -40,14 +40,23 @@ public class Main {
 
 	public static void initialize() throws IOException {
 		System.out.println("-- initialized machine --");
-		System.out.println("To start, type a syntax to the Turing Machine, for exemple:"
-				+ "2 * * r 2");
-		files.readFromConsole();
-		
+		machine.readFromConsole();
+		System.out.println("Type the word: ");
 		machine.writeOnTape(input.nextLine());
 		printAll();
 	}
-	
+	/*
+	 * public static void init() throws IOException {
+		System.out.println("Bem vindo ao Simulador de Maquina de Turing.");
+		turingMachine.readFromConsole();
+		System.out.println("");
+		System.out.print("Digite a palavra: ");
+		turingMachine.escreverPalavra(scan.nextLine());
+		printarFita();
+		printarCabecote();
+		printarEstadoAtual();
+		printarPassos();
+	 */
 	private static void run(String option) throws Exception {
 		int teste = 6;
 		switch (teste) {
