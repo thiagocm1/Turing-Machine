@@ -95,8 +95,13 @@ public class TuringMachine {
 	
 
 	public void restartMachine() {
-		// TODO Auto-generated method stub
-		
+		this.states = new HashSet<State>();
+		this.initialState = new State("0");
+		this.currentState = this.initialState;
+		this.finalStates = new HashSet<State>();
+		this.steps = 0;
+		this.tape = new Tape();
+		this.states.add(initialState);
 	}
 
 	public void readFromConsole() {
