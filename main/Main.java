@@ -1,18 +1,21 @@
 package main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.omg.CORBA.INITIALIZE;
 
+import files.FileReader;
 import machine.TuringMachine;
 
 public class Main {
-
+	
+	private static FileReader files = new FileReader();
 	private static TuringMachine machine = new TuringMachine();
 	private static Scanner input = new Scanner(System.in);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		String option;
 		initialize();
 		do {
@@ -35,12 +38,16 @@ public class Main {
 
 	}
 
-	public static void initialize() {
+	public static void initialize() throws IOException {
 		System.out.println("-- initialized machine --");
 		System.out.println("To start, type a syntax to the Turing Machine, for exemple:"
 				+ "2 * * r 2");
+		files.readFromConsole();
+		
+		machine.writeOnTape(input.nextLine());
+		printAll();
 	}
-
+	
 	private static void run(String option) throws Exception {
 		int teste = 6;
 		switch (teste) {
