@@ -97,7 +97,7 @@ public class Main {
 			array[i] = " ";
 		}
 		
-		array[machine.tape.head] = "*";
+		array[machine.tape.head] = "^";
 		
 		for (int i = 0; i < array.length; i++) {
 			result += array[i];
