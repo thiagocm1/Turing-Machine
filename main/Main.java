@@ -16,13 +16,20 @@ public class Main {
 		String option;
 		initialize();
 		do {
-			System.out.println("Chose a number that correspond to an option below:");
+			System.out.println("Now,chose a number that correspond to an option below:");
 			System.out.println("1 - Run at full speed ");
 			System.out.println("2 - Run step by step");
 			System.out.println("3 - Change words");
-			System.out.println("4 - end machine");
+			System.out.println("4 - Change sintax");
+			System.out.println("5 - End machine");
+			
 			option = input.nextLine();
-			run(option.trim());
+			try {
+				run(option.trim());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		} while (option != "4");
 
@@ -30,10 +37,11 @@ public class Main {
 
 	public static void initialize() {
 		System.out.println("-- initialized machine --");
-
+		System.out.println("To start, type a syntax to the Turing Machine, for exemple:"
+				+ "2 * * r 2");
 	}
 
-	private static void run(String option) {
+	private static void run(String option) throws Exception {
 		int teste = 6;
 		switch (teste) {
 		case 1:
@@ -46,12 +54,19 @@ public class Main {
 			option = "3";
 			System.out.println("Type new word:");
 			String word = input.nextLine();
-			machine.changeWord(word);
+			machine.writeOnTape(word);
 		case 4:
 			option = "4";
-			machine.end();
+			machine.restartMachine();
+			machine.readFromConsole();
+			System.out.println("Type new syntax:");
+			String word2 = input.nextLine();
+			machine.writeOnTape(word2);
 		}
 	}
+	
+	
+	 
 	public static void printAll(){
 		printTape();
 		printHead();
@@ -61,11 +76,11 @@ public class Main {
 	}
 
 	private static void printSteps() {
-		System.out.println("Number of Steps [ " + machine.steps() + " ]");
+		System.out.println("Number of Steps [ " + machine.steps + " ]");
 	}
 
 	private static void printCurrentState() {
-		System.out.println("Current State [ " + machine.currentState()+ " ]");	
+		System.out.println("Current State [ " + machine.currentState.getSymbol() + " ]");	
 	}
 
 	private static void printHead() {
