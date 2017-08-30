@@ -1,6 +1,5 @@
 package machine;
 
-
 public class TransitionFunction {
 	
 	private State nextState;
@@ -8,9 +7,9 @@ public class TransitionFunction {
 	private String currentSymbol;
 	private String direction; // i love one direction
 	
-	public TransitionFunction(String currentState, String nextSymbol, String direction, 
+	public TransitionFunction(String currentSymbol, String nextSymbol, String direction, 
 			State nextState){
-		this.setCurrentSymbol(currentSymbol);
+		this.currentSymbol = currentSymbol;;
 		this.setNextSymbol(nextSymbol);
 		this.setDirection(direction);
 		this.setNextState(nextState);
@@ -52,5 +51,4 @@ public class TransitionFunction {
 	
 	
 	
-
 }
