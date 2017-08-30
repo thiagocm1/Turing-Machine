@@ -3,6 +3,7 @@ package machine;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class State {
 	private String symbol;
 	private Set<TransitionFunction> transitions;
