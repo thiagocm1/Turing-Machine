@@ -94,7 +94,7 @@ public class TuringMachine {
 			if(transition == null){
 				transition = this.currentState.getTransition("*");
 				if(transition == null){
-					throw new Exception("I'm sorry Dave. I'm afraid i can't do that. Please, change your words ' 3 ' or syntax ' 4 ' ");
+					throw new Exception("Unsupported Operation. Please, change your words ( 3 ) or syntax ( 4 )");
 				}
 			}
 			if(!transition.getNextSymbol().equals("*")){
