@@ -1,13 +1,17 @@
+// REBECA MIRANDA BELTRAO DE OLIVEIRA - 115210857
+// THIAGO CUNHA MONTENEGRO - 115211060
 package main;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.omg.CORBA.INITIALIZE;
+
+import files.File;
 import machine.TuringMachine;
-
 public class Main {
-
+	
 	private static TuringMachine turingMachine = new TuringMachine();
 	private static Scanner input = new Scanner(System.in);
 	
@@ -15,7 +19,7 @@ public class Main {
 		init();
 		String opcao;
 		do {
-			System.out.println("Now,chose a number that correspond to an option below: ");
+			System.out.println("Now, chose a number that correspond to an option below: ");
 			System.out.println("1 - Run at full speed ");
 			System.out.println("2 - Run step by step ");
 			System.out.println("3 - Change words ");
@@ -32,7 +36,7 @@ public class Main {
 	public static void init() throws IOException {
 		System.out.println("-- initialized machine --");
 		turingMachine.readFromConsole();
-		System.out.println("Type the word: ");
+		System.out.println("Type initial input: ");
 		turingMachine.writeOnTape(input.nextLine());
 		printAll();
 	}
@@ -58,7 +62,7 @@ public class Main {
 			break;
 		case "3":
 			System.out.println("");
-			System.out.print("Please, type new word: "); 
+			System.out.print("Type new input: "); 
 			String word = input.nextLine();
 			turingMachine.writeOnTape(word);
 			printAll();
@@ -67,7 +71,7 @@ public class Main {
 			turingMachine.restartMachine();
 			turingMachine.readFromConsole();
 			System.out.println("");
-			System.out.print("Please, type new syntax: ");
+			System.out.print("Type new syntax: ");
 			String word1 = input.nextLine();
 			turingMachine.writeOnTape(word1);
 			printAll();
