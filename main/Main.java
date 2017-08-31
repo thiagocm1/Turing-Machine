@@ -23,7 +23,7 @@ public class Main {
 			System.out.println("1 - Run at full speed ");
 			System.out.println("2 - Run step by step ");
 			System.out.println("3 - Change input ");
-			System.out.println("4 - Change sintax ");
+			System.out.println("4 - Change syntax ");
 			System.out.println("5 - End machine ");
 			System.out.print("Option: ");
 			System.out.println("");
