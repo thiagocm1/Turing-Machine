@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.omg.CORBA.INITIALIZE;
-
-import files.File;
 import machine.TuringMachine;
 public class Main {
 	
@@ -62,7 +59,7 @@ public class Main {
 			break;
 		case "3":
 			System.out.println("");
-			System.out.print("Type new input: "); 
+			System.out.print("Type a new input: "); 
 			String word = input.nextLine();
 			turingMachine.writeOnTape(word);
 			printAll();
@@ -71,7 +68,7 @@ public class Main {
 			turingMachine.restartMachine();
 			turingMachine.readFromConsole();
 			System.out.println("");
-			System.out.print("Type new syntax: ");
+			System.out.print("Type a new syntax: ");
 			String word1 = input.nextLine();
 			turingMachine.writeOnTape(word1);
 			printAll();
